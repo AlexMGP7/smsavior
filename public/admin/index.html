@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Panel administrativo · SMS Avior</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0b0b0c;
+        --surface: rgba(255, 255, 255, 0.06);
+        --border: rgba(255, 255, 255, 0.1);
+        --text: #f6f2ec;
+        --muted: #b8afa5;
+        --brand: #ef1b1f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "IBM Plex Sans", sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(239, 27, 31, 0.22), transparent 32%),
+          linear-gradient(180deg, #050505, #131315);
+        color: var(--text);
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+
+      main {
+        width: min(720px, 100%);
+        padding: 32px;
+        border-radius: 28px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        backdrop-filter: blur(18px);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 0.95;
+      }
+
+      p {
+        line-height: 1.7;
+        color: var(--muted);
+      }
+
+      ol {
+        line-height: 1.8;
+        color: var(--muted);
+        padding-left: 1.3rem;
+      }
+
+      a {
+        color: white;
+      }
+
+      .pill {
+        display: inline-flex;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(239, 27, 31, 0.12);
+        color: #ff9a9c;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 12px;
+      }
+
+      code {
+        font-size: 0.95rem;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <span class="pill">Panel en preparación</span>
+      <h1>El panel administrativo se activa al conectar Sanity.</h1>
+      <p>
+        La web ya está lista. Para que tu papá pueda editar textos e imágenes desde un
+        panel simple, solo falta conectar el proyecto de Sanity y volver a desplegar.
+      </p>
+      <ol>
+        <li>Crear el proyecto gratuito en Sanity.</li>
+        <li>Configurar <code>NEXT_PUBLIC_SANITY_PROJECT_ID</code> y <code>NEXT_PUBLIC_SANITY_DATASET</code>.</li>
+        <li>Configurar <code>SANITY_STUDIO_PROJECT_ID</code> y <code>SANITY_STUDIO_DATASET</code> en GitHub Actions.</li>
+        <li>Volver a desplegar para publicar el panel real en esta misma URL.</li>
+      </ol>
+      <p>
+        Mientras tanto, consulta la guía del proyecto en el
+        <a href="../">sitio principal</a>.
+      </p>
+    </main>
+  </body>
+</html>
