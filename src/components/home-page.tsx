@@ -10,6 +10,7 @@ import {
   SquareArrowOutUpRight,
 } from "lucide-react";
 import type { SiteContent } from "@/lib/site-content";
+import { withBasePath } from "@/lib/site-paths";
 
 const iconMap = {
   report: Files,
@@ -42,13 +43,16 @@ function SectionHeader({
 }
 
 export function HomePage({ content }: HomePageProps) {
+  const logoPath = withBasePath("/logo-sms-avior.png");
+  const adminPath = withBasePath("/admin/");
+
   return (
     <main className="pb-20">
       <header className="sticky top-0 z-30 border-b border-white/8 bg-black/45 backdrop-blur-xl">
         <div className="page-shell flex items-center justify-between gap-6 py-4">
           <a href="#inicio" className="flex items-center gap-3">
             <Image
-              src="/logo-sms-avior.png"
+              src={logoPath}
               alt="Logo SMS Avior Airlines"
               width={80}
               height={80}
@@ -126,7 +130,7 @@ export function HomePage({ content }: HomePageProps) {
           <div className="flex items-center gap-4">
             <div className="rounded-2xl bg-black/35 p-3 ring-1 ring-white/10">
               <Image
-                src="/logo-sms-avior.png"
+                src={logoPath}
                 alt="Identidad SMS Avior"
                 width={88}
                 height={88}
@@ -163,7 +167,7 @@ export function HomePage({ content }: HomePageProps) {
               {content.hero.adminNote}
             </p>
             <a
-              href="/admin/"
+              href={adminPath}
               className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-white"
             >
               Ir al panel administrativo

@@ -42,6 +42,11 @@ jobs:
           rm -rf public/admin
           mkdir -p public/admin
           cp -R studio/dist/* public/admin/
+          REPO_BASE="/${GITHUB_REPOSITORY#*/}"
+          sed -i "s|href=\"/static/|href=\"${REPO_BASE}/admin/static/|g" public/admin/index.html
+          sed -i "s|src=\"/static/|src=\"${REPO_BASE}/admin/static/|g" public/admin/index.html
+          sed -i "s|href=\"/smsavior/admin/static/|href=\"${REPO_BASE}/admin/static/|g" public/admin/index.html
+          sed -i "s|src=\"/smsavior/admin/static/|src=\"${REPO_BASE}/admin/static/|g" public/admin/index.html
 
       - name: Build site
         run: pnpm build
