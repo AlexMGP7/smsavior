@@ -28,8 +28,10 @@ export const activityType = defineType({
     }),
     defineField({
       name: "image",
-      title: "Imagen de la actividad",
+      title: "Foto de la actividad",
       type: "image",
+      description:
+        "Sube aquí la evidencia visual de la actividad, charla, simulacro o auditoría.",
       options: { hotspot: true },
       fields: [
         defineField({

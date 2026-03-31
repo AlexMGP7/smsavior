@@ -19,8 +19,9 @@ export const aboutSmsType = defineType({
     }),
     defineField({
       name: "sectionImage",
-      title: "Imagen de la sección",
+      title: "Foto de la sección",
       type: "image",
+      description: "Opcional. Se muestra al lado del contenido de Sobre SMS.",
       options: { hotspot: true },
       fields: [
         defineField({

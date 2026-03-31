@@ -25,6 +25,22 @@ export const homepageType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "heroImage",
+      title: "Foto principal",
+      type: "image",
+      description:
+        "Sube aquí la imagen grande que quieres mostrar en la parte superior del sitio.",
+      options: { hotspot: true },
+      fields: [
+        defineField({
+          name: "alt",
+          title: "Texto alternativo",
+          type: "string",
+          description: "Describe la imagen en una frase corta.",
+        }),
+      ],
+    }),
+    defineField({
       name: "primaryCtaLabel",
       title: "Texto botón principal",
       type: "string",
@@ -53,20 +69,6 @@ export const homepageType = defineType({
       title: "Nota sobre administración",
       type: "text",
       rows: 3,
-    }),
-    defineField({
-      name: "heroImage",
-      title: "Imagen principal",
-      type: "image",
-      options: { hotspot: true },
-      fields: [
-        defineField({
-          name: "alt",
-          title: "Texto alternativo",
-          type: "string",
-          description: "Describe la imagen en una frase corta.",
-        }),
-      ],
     }),
     defineField({
       name: "stats",

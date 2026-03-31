@@ -16,8 +16,9 @@ export const resourceLinkType = defineType({
     defineField({ name: "category", title: "Categoría", type: "string" }),
     defineField({
       name: "image",
-      title: "Imagen del recurso",
+      title: "Foto o portada del recurso",
       type: "image",
+      description: "Opcional. Úsala si quieres que esta tarjeta tenga una imagen visible.",
       options: { hotspot: true },
       fields: [
         defineField({
@@ -38,6 +39,8 @@ export const resourceLinkType = defineType({
       name: "file",
       title: "Archivo del recurso",
       type: "file",
+      description:
+        "Opcional. Puedes subir un PDF, Word, Excel o PowerPoint. Si subes archivo, la web lo abre directo.",
       options: {
         accept: ".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx",
       },

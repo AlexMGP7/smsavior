@@ -9,6 +9,7 @@ export const siteSettingsType = defineType({
       name: "brandLogo",
       title: "Logo principal",
       type: "image",
+      description: "Si subes un logo aquí, la web usará este en lugar del logo fijo actual.",
       options: { hotspot: true },
       fields: [
         defineField({

@@ -27,8 +27,9 @@ export const emergencyPlanType = defineType({
     defineField({ name: "description", title: "Descripción", type: "text", rows: 4 }),
     defineField({
       name: "image",
-      title: "Imagen o portada",
+      title: "Foto o portada del plan",
       type: "image",
+      description: "Opcional. Sirve para que cada plan tenga una portada visual.",
       options: { hotspot: true },
       fields: [
         defineField({
@@ -49,6 +50,8 @@ export const emergencyPlanType = defineType({
       name: "file",
       title: "Archivo del plan",
       type: "file",
+      description:
+        "Opcional. Sube aquí el PDF o documento del plan para que se abra desde la web.",
       options: {
         accept: ".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx",
       },
