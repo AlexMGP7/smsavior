@@ -15,12 +15,33 @@ export const resourceLinkType = defineType({
     defineField({ name: "description", title: "Descripción", type: "text", rows: 4 }),
     defineField({ name: "category", title: "Categoría", type: "string" }),
     defineField({
+      name: "image",
+      title: "Imagen del recurso",
+      type: "image",
+      options: { hotspot: true },
+      fields: [
+        defineField({
+          name: "alt",
+          title: "Texto alternativo",
+          type: "string",
+        }),
+      ],
+    }),
+    defineField({
       name: "ctaLabel",
       title: "Texto del botón",
       type: "string",
       initialValue: "Abrir recurso",
     }),
     defineField({ name: "href", title: "Enlace", type: "url" }),
+    defineField({
+      name: "file",
+      title: "Archivo del recurso",
+      type: "file",
+      options: {
+        accept: ".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx",
+      },
+    }),
     defineField({
       name: "external",
       title: "Abrir en pestaña nueva",

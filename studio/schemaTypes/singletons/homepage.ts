@@ -55,6 +55,20 @@ export const homepageType = defineType({
       rows: 3,
     }),
     defineField({
+      name: "heroImage",
+      title: "Imagen principal",
+      type: "image",
+      options: { hotspot: true },
+      fields: [
+        defineField({
+          name: "alt",
+          title: "Texto alternativo",
+          type: "string",
+          description: "Describe la imagen en una frase corta.",
+        }),
+      ],
+    }),
+    defineField({
       name: "stats",
       title: "Indicadores rápidos",
       type: "array",

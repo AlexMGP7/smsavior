@@ -26,6 +26,19 @@ export const activityType = defineType({
       type: "string",
       description: "Ejemplo: Marzo 2026",
     }),
+    defineField({
+      name: "image",
+      title: "Imagen de la actividad",
+      type: "image",
+      options: { hotspot: true },
+      fields: [
+        defineField({
+          name: "alt",
+          title: "Texto alternativo",
+          type: "string",
+        }),
+      ],
+    }),
     defineField({ name: "description", title: "Descripción", type: "text", rows: 5 }),
     defineField({
       name: "outcome",

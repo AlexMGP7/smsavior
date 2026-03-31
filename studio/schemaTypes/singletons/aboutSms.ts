@@ -17,6 +17,19 @@ export const aboutSmsType = defineType({
       type: "text",
       rows: 4,
     }),
+    defineField({
+      name: "sectionImage",
+      title: "Imagen de la sección",
+      type: "image",
+      options: { hotspot: true },
+      fields: [
+        defineField({
+          name: "alt",
+          title: "Texto alternativo",
+          type: "string",
+        }),
+      ],
+    }),
     defineField({ name: "mission", title: "Misión", type: "text", rows: 5 }),
     defineField({ name: "vision", title: "Visión", type: "text", rows: 5 }),
     defineField({

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import {
   ArrowRight,
@@ -24,6 +25,29 @@ type HomePageProps = {
   content: SiteContent;
 };
 
+function ContentImage({
+  image,
+  className,
+  fallbackAlt,
+}: {
+  image?: { url?: string; alt?: string };
+  className: string;
+  fallbackAlt: string;
+}) {
+  if (!image?.url) {
+    return null;
+  }
+
+  return (
+    <img
+      src={image.url}
+      alt={image.alt || fallbackAlt}
+      className={className}
+      loading="lazy"
+    />
+  );
+}
+
 function SectionHeader({
   eyebrow,
   title,
@@ -45,20 +69,34 @@ function SectionHeader({
 export function HomePage({ content }: HomePageProps) {
   const logoPath = withBasePath("/logo-sms-avior.png");
   const adminPath = withBasePath("/admin/");
+  const logoImage = content.branding.logo;
+  const headerLogoAlt = logoImage?.alt || "Logo SMS Avior Airlines";
+  const heroActionUrl = (resource: SiteContent["resources"][number]) =>
+    resource.file?.url || resource.href;
+  const planActionUrl = (plan: SiteContent["emergencyPlans"][number]) =>
+    plan.file?.url || plan.href;
 
   return (
     <main className="pb-20">
       <header className="sticky top-0 z-30 border-b border-white/8 bg-black/45 backdrop-blur-xl">
         <div className="page-shell flex items-center justify-between gap-6 py-4">
           <a href="#inicio" className="flex items-center gap-3">
-            <Image
-              src={logoPath}
-              alt="Logo SMS Avior Airlines"
-              width={80}
-              height={80}
-              className="h-11 w-11 rounded-xl object-cover ring-1 ring-white/10"
-              priority
-            />
+            {logoImage?.url ? (
+              <ContentImage
+                image={logoImage}
+                fallbackAlt={headerLogoAlt}
+                className="h-11 w-11 rounded-xl object-cover ring-1 ring-white/10"
+              />
+            ) : (
+              <Image
+                src={logoPath}
+                alt={headerLogoAlt}
+                width={80}
+                height={80}
+                className="h-11 w-11 rounded-xl object-cover ring-1 ring-white/10"
+                priority
+              />
+            )}
             <div>
               <p className="font-[family-name:var(--font-display)] text-base font-semibold">
                 SMS Avior Airlines
@@ -127,25 +165,43 @@ export function HomePage({ content }: HomePageProps) {
         </div>
 
         <aside className="surface-card rounded-[2rem] p-7 sm:p-8">
-          <div className="flex items-center gap-4">
-            <div className="rounded-2xl bg-black/35 p-3 ring-1 ring-white/10">
-              <Image
-                src={logoPath}
-                alt="Identidad SMS Avior"
-                width={88}
-                height={88}
-                className="h-16 w-16 object-cover"
+          {content.hero.heroImage?.url ? (
+            <div className="overflow-hidden rounded-[1.6rem] border border-white/10 bg-black/30">
+              <ContentImage
+                image={content.hero.heroImage}
+                fallbackAlt="Imagen principal del sitio SMS"
+                className="h-56 w-full object-cover"
               />
             </div>
-            <div>
-              <p className="text-sm uppercase tracking-[0.32em] text-white/45">
-                Gestión SMS
-              </p>
-              <p className="font-[family-name:var(--font-display)] text-2xl font-semibold">
-                Avior Airlines
-              </p>
+          ) : (
+            <div className="flex items-center gap-4">
+              <div className="rounded-2xl bg-black/35 p-3 ring-1 ring-white/10">
+                {logoImage?.url ? (
+                  <ContentImage
+                    image={logoImage}
+                    fallbackAlt={headerLogoAlt}
+                    className="h-16 w-16 object-cover"
+                  />
+                ) : (
+                  <Image
+                    src={logoPath}
+                    alt="Identidad SMS Avior"
+                    width={88}
+                    height={88}
+                    className="h-16 w-16 object-cover"
+                  />
+                )}
+              </div>
+              <div>
+                <p className="text-sm uppercase tracking-[0.32em] text-white/45">
+                  Gestión SMS
+                </p>
+                <p className="font-[family-name:var(--font-display)] text-2xl font-semibold">
+                  Avior Airlines
+                </p>
+              </div>
             </div>
-          </div>
+          )}
 
           <div className="mt-8 space-y-4">
             {content.hero.focusAreas.map((item) => (
@@ -217,6 +273,15 @@ export function HomePage({ content }: HomePageProps) {
           </article>
 
           <div className="grid gap-5">
+            {content.about.sectionImage?.url ? (
+              <article className="overflow-hidden rounded-[1.75rem] border border-white/8 bg-white/6">
+                <ContentImage
+                  image={content.about.sectionImage}
+                  fallbackAlt="Imagen de la sección sobre SMS"
+                  className="h-60 w-full object-cover"
+                />
+              </article>
+            ) : null}
             {content.about.highlights.map((highlight) => (
               <article
                 key={highlight.title}
@@ -246,41 +311,56 @@ export function HomePage({ content }: HomePageProps) {
         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {content.resources.map((resource) => {
             const Icon = iconMap[resource.icon] ?? Files;
+            const resourceActionUrl = heroActionUrl(resource);
 
             return (
               <article
                 key={resource.title}
-                className="surface-card flex h-full flex-col rounded-[1.75rem] p-6"
+                className="surface-card flex h-full flex-col overflow-hidden rounded-[1.75rem]"
               >
-                <div className="flex items-center justify-between">
-                  <span className="rounded-2xl bg-[#ef1b1f]/12 p-3 text-[#ff7a7d]">
-                    <Icon size={24} />
-                  </span>
-                  <span className="text-xs uppercase tracking-[0.25em] text-white/42">
-                    {resource.category}
-                  </span>
-                </div>
-                <h3 className="mt-5 font-[family-name:var(--font-display)] text-2xl font-semibold">
-                  {resource.title}
-                </h3>
-                <p className="mt-3 flex-1 text-sm leading-7 text-white/64">
-                  {resource.description}
-                </p>
-                {resource.href ? (
+                {resource.image?.url ? (
+                  <ContentImage
+                    image={resource.image}
+                    fallbackAlt={resource.title}
+                    className="h-44 w-full object-cover"
+                  />
+                ) : null}
+                <div className="flex flex-1 flex-col p-6">
+                  <div className="flex items-center justify-between">
+                    <span className="rounded-2xl bg-[#ef1b1f]/12 p-3 text-[#ff7a7d]">
+                      <Icon size={24} />
+                    </span>
+                    <span className="text-xs uppercase tracking-[0.25em] text-white/42">
+                      {resource.category}
+                    </span>
+                  </div>
+                  <h3 className="mt-5 font-[family-name:var(--font-display)] text-2xl font-semibold">
+                    {resource.title}
+                  </h3>
+                  <p className="mt-3 flex-1 text-sm leading-7 text-white/64">
+                    {resource.description}
+                  </p>
+                  {resourceActionUrl ? (
                   <a
-                    href={resource.href}
+                    href={resourceActionUrl}
                     target={resource.external ? "_blank" : undefined}
                     rel={resource.external ? "noreferrer" : undefined}
                     className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-white"
                   >
                     {resource.ctaLabel}
+                    {resource.file?.url ? (
+                      <span className="rounded-full border border-white/12 px-2 py-0.5 text-[10px] uppercase tracking-[0.18em] text-white/48">
+                        Archivo
+                      </span>
+                    ) : null}
                     <SquareArrowOutUpRight size={15} />
                   </a>
                 ) : (
                   <p className="mt-5 text-sm text-white/38">
-                    Cargue este enlace desde el CMS.
+                    Cargue un enlace o archivo desde el CMS.
                   </p>
-                )}
+                  )}
+                </div>
               </article>
             );
           })}
@@ -301,6 +381,15 @@ export function HomePage({ content }: HomePageProps) {
             >
               <div className="absolute right-[-24px] top-[-24px] rounded-full bg-[#ef1b1f]/14 p-10 blur-2xl" />
               <div className="relative">
+                {plan.image?.url ? (
+                  <div className="mb-6 overflow-hidden rounded-[1.4rem] border border-white/10">
+                    <ContentImage
+                      image={plan.image}
+                      fallbackAlt={plan.title}
+                      className="h-44 w-full object-cover"
+                    />
+                  </div>
+                ) : null}
                 <div className="flex flex-wrap items-center gap-3 text-sm text-white/60">
                   <span className="inline-flex items-center gap-2 rounded-full border border-white/12 px-3 py-1">
                     <MapPin size={14} />
@@ -327,14 +416,16 @@ export function HomePage({ content }: HomePageProps) {
                     </div>
                   ))}
                 </div>
-                {plan.href ? (
+                {planActionUrl(plan) ? (
                   <a
-                    href={plan.href}
+                    href={planActionUrl(plan)}
                     className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-white"
                     target={plan.external ? "_blank" : undefined}
                     rel={plan.external ? "noreferrer" : undefined}
                   >
-                    Ver documento principal
+                    {plan.file?.url
+                      ? `Abrir ${plan.file.originalFilename ?? "archivo del plan"}`
+                      : "Ver documento principal"}
                     <SquareArrowOutUpRight size={16} />
                   </a>
                 ) : null}
@@ -356,16 +447,32 @@ export function HomePage({ content }: HomePageProps) {
               key={activity.title}
               className="surface-card flex flex-col overflow-hidden rounded-[1.75rem]"
             >
-              <div className="h-48 bg-[radial-gradient(circle_at_top_left,_rgba(239,27,31,0.58),_transparent_36%),linear-gradient(135deg,_rgba(255,255,255,0.14),_rgba(255,255,255,0.03))] p-6">
+              <div
+                className={
+                  activity.image?.url
+                    ? "relative h-52 overflow-hidden"
+                    : "h-48 bg-[radial-gradient(circle_at_top_left,_rgba(239,27,31,0.58),_transparent_36%),linear-gradient(135deg,_rgba(255,255,255,0.14),_rgba(255,255,255,0.03))] p-6"
+                }
+              >
+                {activity.image?.url ? (
+                  <>
+                    <ContentImage
+                      image={activity.image}
+                      fallbackAlt={activity.title}
+                      className="h-full w-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-black/20 p-6" />
+                  </>
+                ) : null}
                 <div className="flex h-full flex-col justify-between">
                   <div className="flex items-center justify-between">
-                    <span className="rounded-full border border-white/12 bg-black/30 px-3 py-1 text-xs uppercase tracking-[0.22em] text-white/60">
+                    <span className="rounded-full border border-white/12 bg-black/40 px-3 py-1 text-xs uppercase tracking-[0.22em] text-white/70">
                       {activity.station}
                     </span>
-                    <span className="text-sm text-white/55">{activity.date}</span>
+                    <span className="text-sm text-white/70">{activity.date}</span>
                   </div>
                   <div>
-                    <p className="text-sm uppercase tracking-[0.22em] text-white/48">
+                    <p className="text-sm uppercase tracking-[0.22em] text-white/65">
                       {activity.category}
                     </p>
                     <h3 className="mt-2 font-[family-name:var(--font-display)] text-2xl font-semibold">

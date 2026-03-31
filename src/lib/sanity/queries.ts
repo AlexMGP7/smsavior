@@ -9,6 +9,12 @@ export const heroQuery = groq`*[_type == "homepage"][0]{
   secondaryCtaLabel,
   secondaryCtaHref,
   adminNote,
+  heroImage{
+    alt,
+    asset->{
+      url
+    }
+  },
   stats[]{
     value,
     label
@@ -25,6 +31,12 @@ export const aboutQuery = groq`*[_type == "aboutSms"][0]{
   description,
   mission,
   vision,
+  sectionImage{
+    alt,
+    asset->{
+      url
+    }
+  },
   pillars[]{
     title,
     description
@@ -43,7 +55,19 @@ export const resourcesQuery = groq`*[_type == "resourceLink"] | order(orderRank 
   ctaLabel,
   href,
   external,
-  icon
+  icon,
+  image{
+    alt,
+    asset->{
+      url
+    }
+  },
+  file{
+    asset->{
+      url,
+      originalFilename
+    }
+  }
 }`;
 
 export const emergencyPlansQuery = groq`*[_type == "emergencyPlan"] | order(orderRank asc, _createdAt asc){
@@ -53,7 +77,19 @@ export const emergencyPlansQuery = groq`*[_type == "emergencyPlan"] | order(orde
   description,
   items,
   href,
-  external
+  external,
+  image{
+    alt,
+    asset->{
+      url
+    }
+  },
+  file{
+    asset->{
+      url,
+      originalFilename
+    }
+  }
 }`;
 
 export const activitiesQuery = groq`*[_type == "activity"] | order(orderRank asc, eventDate desc){
@@ -62,10 +98,22 @@ export const activitiesQuery = groq`*[_type == "activity"] | order(orderRank asc
   station,
   "date": coalesce(displayDate, eventDate),
   description,
-  outcome
+  outcome,
+  image{
+    alt,
+    asset->{
+      url
+    }
+  }
 }`;
 
 export const metricsSummaryQuery = groq`*[_type == "siteSettings"][0]{
+  brandLogo{
+    alt,
+    asset->{
+      url
+    }
+  },
   metricsSummaryTitle,
   metricsSummaryDescription
 }`;

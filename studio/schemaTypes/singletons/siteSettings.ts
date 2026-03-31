@@ -6,6 +6,19 @@ export const siteSettingsType = defineType({
   type: "document",
   fields: [
     defineField({
+      name: "brandLogo",
+      title: "Logo principal",
+      type: "image",
+      options: { hotspot: true },
+      fields: [
+        defineField({
+          name: "alt",
+          title: "Texto alternativo del logo",
+          type: "string",
+        }),
+      ],
+    }),
+    defineField({
       name: "metricsSummaryTitle",
       title: "Título del resumen de indicadores",
       type: "string",

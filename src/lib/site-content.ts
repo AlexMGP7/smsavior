@@ -1,6 +1,19 @@
 export type ResourceIcon = "report" | "policy" | "glossary" | "emergency" | "change";
 
+export type MediaImage = {
+  url?: string;
+  alt?: string;
+};
+
+export type MediaFile = {
+  url?: string;
+  originalFilename?: string;
+};
+
 export type SiteContent = {
+  branding: {
+    logo?: MediaImage;
+  };
   hero: {
     eyebrow: string;
     title: string;
@@ -8,6 +21,7 @@ export type SiteContent = {
     primaryCta: { label: string; href: string };
     secondaryCta: { label: string; href: string };
     adminNote: string;
+    heroImage?: MediaImage;
     stats: Array<{ value: string; label: string }>;
     focusAreas: Array<{
       kicker: string;
@@ -20,6 +34,7 @@ export type SiteContent = {
     description: string;
     mission: string;
     vision: string;
+    sectionImage?: MediaImage;
     pillars: Array<{ title: string; description: string }>;
     highlights: Array<{
       eyebrow: string;
@@ -35,6 +50,8 @@ export type SiteContent = {
     href?: string;
     external?: boolean;
     icon: ResourceIcon;
+    image?: MediaImage;
+    file?: MediaFile;
   }>;
   emergencyPlans: Array<{
     station: string;
@@ -44,6 +61,8 @@ export type SiteContent = {
     items: string[];
     href?: string;
     external?: boolean;
+    image?: MediaImage;
+    file?: MediaFile;
   }>;
   activities: Array<{
     title: string;
@@ -52,6 +71,7 @@ export type SiteContent = {
     date: string;
     description: string;
     outcome: string;
+    image?: MediaImage;
   }>;
   metricsSummary: {
     title: string;
@@ -74,6 +94,7 @@ export type SiteContent = {
 };
 
 export const defaultSiteContent: SiteContent = {
+  branding: {},
   hero: {
     eyebrow: "Sistema de Gestión de la Seguridad Operacional",
     title: "Seguridad operacional con criterio, visibilidad y respuesta.",
@@ -89,6 +110,7 @@ export const defaultSiteContent: SiteContent = {
     },
     adminNote:
       "Este sitio quedó preparado para que los textos, imágenes, planes y actividades se administren desde un panel simple sin tocar código.",
+    heroImage: undefined,
     stats: [
       { value: "4", label: "componentes SMS visibles y actualizables" },
       { value: "6+", label: "módulos de contenido listos para publicar" },
@@ -123,6 +145,7 @@ export const defaultSiteContent: SiteContent = {
       "Mantener una operación respaldada por procesos de seguridad operacional claros, prevención de peligros, comunicación oportuna y respuesta coordinada ante contingencias.",
     vision:
       "Consolidar una cultura SMS visible, práctica y sostenible, donde las estaciones operativas y sus responsables tengan acceso ágil a información confiable y vigente.",
+    sectionImage: undefined,
     pillars: [
       {
         title: "Política y objetivos",
@@ -169,6 +192,8 @@ export const defaultSiteContent: SiteContent = {
       category: "Gestión",
       ctaLabel: "Configurar enlace",
       icon: "report",
+      image: undefined,
+      file: undefined,
     },
     {
       title: "Taxonomía de peligros",
@@ -177,6 +202,8 @@ export const defaultSiteContent: SiteContent = {
       category: "Consulta",
       ctaLabel: "Configurar enlace",
       icon: "glossary",
+      image: undefined,
+      file: undefined,
     },
     {
       title: "Políticas y objetivos SMS",
@@ -185,6 +212,8 @@ export const defaultSiteContent: SiteContent = {
       category: "Gobernanza",
       ctaLabel: "Configurar enlace",
       icon: "policy",
+      image: undefined,
+      file: undefined,
     },
     {
       title: "Glosario SMS",
@@ -193,6 +222,8 @@ export const defaultSiteContent: SiteContent = {
       category: "Formación",
       ctaLabel: "Configurar enlace",
       icon: "glossary",
+      image: undefined,
+      file: undefined,
     },
     {
       title: "Gestión del cambio",
@@ -201,6 +232,8 @@ export const defaultSiteContent: SiteContent = {
       category: "Proceso",
       ctaLabel: "Configurar enlace",
       icon: "change",
+      image: undefined,
+      file: undefined,
     },
     {
       title: "Responsabilidades y comité SMS",
@@ -209,6 +242,8 @@ export const defaultSiteContent: SiteContent = {
       category: "Estructura",
       ctaLabel: "Configurar enlace",
       icon: "policy",
+      image: undefined,
+      file: undefined,
     },
   ],
   emergencyPlans: [
@@ -224,6 +259,8 @@ export const defaultSiteContent: SiteContent = {
         "Ruta de evacuación y anexos",
         "Fecha de última revisión",
       ],
+      image: undefined,
+      file: undefined,
     },
     {
       station: "LSP",
@@ -237,6 +274,8 @@ export const defaultSiteContent: SiteContent = {
         "Datos del coordinador local",
         "Estado de vigencia del plan",
       ],
+      image: undefined,
+      file: undefined,
     },
     {
       station: "VIG",
@@ -250,6 +289,8 @@ export const defaultSiteContent: SiteContent = {
         "Actualizaciones recientes",
         "Anexos descargables",
       ],
+      image: undefined,
+      file: undefined,
     },
     {
       station: "SVZ",
@@ -263,6 +304,8 @@ export const defaultSiteContent: SiteContent = {
         "Carga simple para el editor",
         "Mayor claridad para consulta pública",
       ],
+      image: undefined,
+      file: undefined,
     },
   ],
   activities: [
@@ -274,6 +317,7 @@ export const defaultSiteContent: SiteContent = {
       description:
         "Espacio preparado para publicar charlas, inducciones, campañas internas y acciones de sensibilización sobre seguridad operacional.",
       outcome: "Ideal para cargar evidencias con fecha e imagen.",
+      image: undefined,
     },
     {
       title: "Simulacro de emergencia",
@@ -283,6 +327,7 @@ export const defaultSiteContent: SiteContent = {
       description:
         "Bloque para documentar simulacros en mesa o ejercicios operacionales con su resumen, hallazgos y material visual.",
       outcome: "Se puede replicar por estación sin crear páginas nuevas.",
+      image: undefined,
     },
     {
       title: "Revisión documental SMS",
@@ -292,6 +337,7 @@ export const defaultSiteContent: SiteContent = {
       description:
         "Pensado para registrar avances, revisiones internas, auditorías o hitos de certificación con lenguaje claro y cronológico.",
       outcome: "Sirve como bitácora institucional visible.",
+      image: undefined,
     },
     {
       title: "Auditoría interna",
@@ -301,6 +347,7 @@ export const defaultSiteContent: SiteContent = {
       description:
         "Cada registro puede incluir descripción, estado, resultado y observaciones para preservar memoria operativa.",
       outcome: "Aporta trazabilidad sin complejidad técnica.",
+      image: undefined,
     },
     {
       title: "Socialización de políticas",
@@ -310,6 +357,7 @@ export const defaultSiteContent: SiteContent = {
       description:
         "Útil para dejar evidencia de jornadas de inducción, difusión de políticas, responsabilidades y actualización normativa.",
       outcome: "Todo editable desde un formulario simple.",
+      image: undefined,
     },
     {
       title: "Seguimiento de acciones",
@@ -319,6 +367,7 @@ export const defaultSiteContent: SiteContent = {
       description:
         "Sección preparada para mostrar acciones de seguimiento derivadas de reportes, reuniones o revisiones del comité.",
       outcome: "Mantiene visible el ciclo de mejora del SMS.",
+      image: undefined,
     },
   ],
   metricsSummary: {

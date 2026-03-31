@@ -38,6 +38,14 @@ export async function loadSiteContent(): Promise<SiteContent> {
     ]);
 
     return {
+      branding: metricsSummary?.brandLogo
+        ? {
+            logo: {
+              url: metricsSummary.brandLogo.asset?.url,
+              alt: metricsSummary.brandLogo.alt,
+            },
+          }
+        : defaultSiteContent.branding,
       hero: hero
         ? {
             eyebrow: hero.heroEyebrow,
@@ -52,16 +60,77 @@ export async function loadSiteContent(): Promise<SiteContent> {
               href: hero.secondaryCtaHref,
             },
             adminNote: hero.adminNote,
+            heroImage: hero.heroImage
+              ? {
+                  url: hero.heroImage.asset?.url,
+                  alt: hero.heroImage.alt,
+                }
+              : undefined,
             stats: hero.stats,
             focusAreas: hero.focusAreas,
           }
         : defaultSiteContent.hero,
-      about: about ?? defaultSiteContent.about,
-      resources: resources?.length ? resources : defaultSiteContent.resources,
+      about: about
+        ? {
+            title: about.title,
+            description: about.description,
+            mission: about.mission,
+            vision: about.vision,
+            sectionImage: about.sectionImage
+              ? {
+                  url: about.sectionImage.asset?.url,
+                  alt: about.sectionImage.alt,
+                }
+              : undefined,
+            pillars: about.pillars,
+            highlights: about.highlights,
+          }
+        : defaultSiteContent.about,
+      resources: resources?.length
+        ? resources.map((resource: NonNullable<typeof resources>[number]) => ({
+            ...resource,
+            image: resource.image
+              ? {
+                  url: resource.image.asset?.url,
+                  alt: resource.image.alt,
+                }
+              : undefined,
+            file: resource.file?.asset
+              ? {
+                  url: resource.file.asset.url,
+                  originalFilename: resource.file.asset.originalFilename,
+                }
+              : undefined,
+          }))
+        : defaultSiteContent.resources,
       emergencyPlans: emergencyPlans?.length
-        ? emergencyPlans
+        ? emergencyPlans.map((plan: NonNullable<typeof emergencyPlans>[number]) => ({
+            ...plan,
+            image: plan.image
+              ? {
+                  url: plan.image.asset?.url,
+                  alt: plan.image.alt,
+                }
+              : undefined,
+            file: plan.file?.asset
+              ? {
+                  url: plan.file.asset.url,
+                  originalFilename: plan.file.asset.originalFilename,
+                }
+              : undefined,
+          }))
         : defaultSiteContent.emergencyPlans,
-      activities: activities?.length ? activities : defaultSiteContent.activities,
+      activities: activities?.length
+        ? activities.map((activity: NonNullable<typeof activities>[number]) => ({
+            ...activity,
+            image: activity.image
+              ? {
+                  url: activity.image.asset?.url,
+                  alt: activity.image.alt,
+                }
+              : undefined,
+          }))
+        : defaultSiteContent.activities,
       metricsSummary: metricsSummary
         ? {
             title: metricsSummary.metricsSummaryTitle,

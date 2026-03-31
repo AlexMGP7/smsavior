@@ -26,12 +26,33 @@ export const emergencyPlanType = defineType({
     }),
     defineField({ name: "description", title: "Descripción", type: "text", rows: 4 }),
     defineField({
+      name: "image",
+      title: "Imagen o portada",
+      type: "image",
+      options: { hotspot: true },
+      fields: [
+        defineField({
+          name: "alt",
+          title: "Texto alternativo",
+          type: "string",
+        }),
+      ],
+    }),
+    defineField({
       name: "items",
       title: "Elementos visibles",
       type: "array",
       of: [defineArrayMember({ type: "string" })],
     }),
     defineField({ name: "href", title: "Enlace principal", type: "url" }),
+    defineField({
+      name: "file",
+      title: "Archivo del plan",
+      type: "file",
+      options: {
+        accept: ".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx",
+      },
+    }),
     defineField({
       name: "external",
       title: "Abrir en pestaña nueva",
