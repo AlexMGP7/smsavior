@@ -38,6 +38,7 @@ jobs:
 
       - name: Build Sanity studio
         run: |
+          export SANITY_STUDIO_BASE_PATH="/${GITHUB_REPOSITORY#*/}/admin"
           pnpm cms:build
           rm -rf public/admin
           mkdir -p public/admin

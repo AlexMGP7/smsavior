@@ -14,15 +14,10 @@ const dataset =
   process.env.NEXT_PUBLIC_SANITY_DATASET ??
   "production";
 
-const repoName = process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "";
-const basePath =
-  process.env.SANITY_STUDIO_BASE_PATH ??
-  (process.env.GITHUB_ACTIONS === "true" && repoName
-    ? `/${repoName}/admin`
-    : "/admin");
+const basePath = process.env.SANITY_STUDIO_BASE_PATH ?? "/admin";
 
 export default defineConfig({
-  name: "smsavior-studio",
+  name: "default",
   title: "SMS Avior CMS",
   projectId,
   dataset,
