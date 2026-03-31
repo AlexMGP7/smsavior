@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  repository_dispatch:
+    types:
+      - sanity_content_update
   workflow_dispatch:
 
 permissions:
@@ -18,11 +21,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID }}
-      NEXT_PUBLIC_SANITY_DATASET: ${{ vars.NEXT_PUBLIC_SANITY_DATASET }}
-      SANITY_STUDIO_PROJECT_ID: ${{ vars.SANITY_STUDIO_PROJECT_ID }}
-      SANITY_STUDIO_DATASET: ${{ vars.SANITY_STUDIO_DATASET }}
     steps:
       - uses: actions/checkout@v4
 
@@ -39,7 +37,6 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build Sanity studio
-        if: ${{ env.SANITY_STUDIO_PROJECT_ID != '' && env.SANITY_STUDIO_DATASET != '' }}
         run: |
           pnpm cms:build
           rm -rf public/admin
