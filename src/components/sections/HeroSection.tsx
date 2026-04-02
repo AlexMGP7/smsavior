@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { ArrowRight, Radar, SquareArrowOutUpRight } from "lucide-react";
+import { ArrowRight, Radar } from "lucide-react";
 import { motion } from "framer-motion";
 import { ContentImage } from "@/components/ui/ContentImage";
 import { withBasePath } from "@/lib/site-paths";
@@ -17,7 +17,6 @@ export function HeroSection({
   headerLogoAlt: string;
 }) {
   const logoPath = withBasePath("/logo-sms-avior.png");
-  const adminPath = withBasePath("/admin/");
   const heroHighlights = content.focusAreas.slice(0, 3);
 
   const containerVariants = {
@@ -139,17 +138,6 @@ export function HeroSection({
             <p className="mt-2 text-sm leading-6 text-gray-600">
               Hero visual, recursos con portada, actividades con evidencia y acceso administrativo.
             </p>
-          </article>
-
-          <article className="hero-float hero-float-bottom">
-            <p className="text-[0.72rem] uppercase tracking-[0.28em] text-gray-500 font-bold">
-              Panel editorial
-            </p>
-            <p className="mt-3 text-sm leading-6 text-gray-800 font-medium">{content.adminNote}</p>
-            <a href={adminPath} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-red-600 hover:text-red-700">
-              Abrir administración
-              <SquareArrowOutUpRight size={15} />
-            </a>
           </article>
         </div>
 

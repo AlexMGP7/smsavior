@@ -1,12 +1,9 @@
 "use client";
 import React from "react";
-import { SquareArrowOutUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import type { SiteContent } from "@/lib/site-content";
-import { withBasePath } from "@/lib/site-paths";
 
 export function ContactSection({ contact }: { contact: SiteContent["contact"] }) {
-  const adminPath = withBasePath("/admin/");
 
   return (
     <section id="contacto" className="page-shell section-space">
@@ -22,11 +19,7 @@ export function ContactSection({ contact }: { contact: SiteContent["contact"] })
           <h2 className="section-title mt-5 text-gray-900">{contact.title}</h2>
           <p className="section-copy mt-5 max-w-2xl">{contact.description}</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a href={adminPath} className="primary-button">
-              Abrir panel administrativo
-              <SquareArrowOutUpRight size={16} />
-            </a>
-            <a href="#inicio" className="secondary-button">
+            <a href="#inicio" className="primary-button">
               Volver al inicio
             </a>
           </div>

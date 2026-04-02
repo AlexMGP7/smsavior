@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { ArrowRight, SquareArrowOutUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { ContentImage } from "@/components/ui/ContentImage";
 import { withBasePath } from "@/lib/site-paths";
 
@@ -13,7 +13,6 @@ export function SiteHeader({
   headerLogoAlt: string;
 }) {
   const logoPath = withBasePath("/logo-sms-avior.png");
-  const adminPath = withBasePath("/admin/");
 
   return (
     <header className="sticky top-0 z-40 border-b border-gray-200 bg-white/90 backdrop-blur-2xl shadow-sm">
@@ -60,10 +59,6 @@ export function SiteHeader({
         </nav>
 
         <div className="flex items-center gap-3">
-          <a href={adminPath} className="hidden secondary-button lg:inline-flex">
-            CMS
-            <SquareArrowOutUpRight size={16} />
-          </a>
           <a href="#contacto" className="primary-button">
             Coordinación SMS
             <ArrowRight size={16} />
