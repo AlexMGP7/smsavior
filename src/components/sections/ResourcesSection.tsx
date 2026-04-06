@@ -36,7 +36,7 @@ export function ResourcesSection({ resources }: { resources: SiteContent["resour
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="resource-card resource-card-feature"
+            className="resource-card lg:col-span-7"
           >
             <div className="resource-media">
               {featuredResource.image?.url ? (
@@ -89,7 +89,7 @@ export function ResourcesSection({ resources }: { resources: SiteContent["resour
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-              className="resource-card"
+              className="resource-card lg:col-span-5"
             >
               <div className="resource-card-top">
                 {resource.image?.url ? (

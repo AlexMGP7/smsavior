@@ -12,7 +12,7 @@ export function ContactSection({ contact }: { contact: SiteContent["contact"] })
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="contact-band"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-8"
       >
         <div>
           <p className="section-label">Coordinación</p>

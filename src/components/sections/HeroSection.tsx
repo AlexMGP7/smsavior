@@ -141,7 +141,7 @@ export function HeroSection({
           </article>
         </div>
 
-        <div className="hero-focus-grid">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {heroHighlights.map((item, index) => (
             <motion.article
               key={item.title}

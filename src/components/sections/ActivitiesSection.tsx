@@ -23,7 +23,7 @@ export function ActivitiesSection({ activities }: { activities: SiteContent["act
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
             className={`activity-card border border-gray-200 rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow ${
-              index === 0 ? "activity-card-feature" : ""
+              index === 0 ? "lg:col-span-8" : "lg:col-span-4"
             }`}
           >
             <div className="activity-media">

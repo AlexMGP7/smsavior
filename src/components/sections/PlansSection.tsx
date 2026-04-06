@@ -26,7 +26,7 @@ export function PlansSection({ plans }: { plans: SiteContent["emergencyPlans"] }
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="plan-card bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+            className="plan-card grid grid-cols-1 lg:grid-cols-[1fr_2fr] bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
           >
             <div className="plan-media">
               {plan.image?.url ? (
